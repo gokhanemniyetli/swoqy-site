@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dartflare: 3D Darts Game · Friend invite</title>
+<meta name="description" content="A friend invited you to Dartflare: 3D Darts Game. Install the game and you both get a coin reward.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/apps/dartflare/icon.png">
+<meta property="og:title" content="Join me in Dartflare: 3D Darts Game">
+<meta property="og:description" content="Install the game with my invite and we both get a coin reward.">
+<meta property="og:image" content="https://swoqy.com/apps/dartflare/icon.png">
+<style>
+  :root { --bg:#0e1114; --panel:#161b20; --line:#232a31; --ink:#e9edf1; --muted:#9aa5b1; --accent:#ff9b5e; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; min-height:100vh; display:flex; align-items:center; justify-content:center; }
+  main { width:100%; max-width:440px; padding:28px 16px; text-align:center; }
+  .icon { width:104px; height:104px; border-radius:24px; box-shadow:0 6px 24px rgba(0,0,0,.45); }
+  h1 { font-size:26px; line-height:1.2; margin:16px 0 6px; }
+  p { margin:6px 0; color:var(--muted); }
+  .code { margin:22px auto 8px; display:inline-flex; align-items:center; gap:12px; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:10px 14px 10px 20px; }
+  .code b { font:700 28px/1 ui-monospace,SFMono-Regular,Menlo,monospace; letter-spacing:5px; color:var(--ink); }
+  .code button { font:inherit; font-size:14px; color:var(--accent); background:none; border:1px solid var(--line); border-radius:9px; padding:6px 12px; cursor:pointer; }
+  .btns { display:flex; flex-direction:column; gap:10px; margin:22px 0 10px; }
+  .btn { display:block; padding:13px 18px; border-radius:12px; border:1px solid var(--line); background:var(--panel); color:var(--ink); font-weight:600; text-decoration:none; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#2a1304; }
+  .btn[aria-disabled="true"] { opacity:.6; pointer-events:none; }
+  .small { font-size:14px; }
+  a { color:var(--accent); }
+  [hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="/apps/dartflare/icon.png" alt="Dartflare: 3D Darts Game" width="104" height="104">
+  <h1 id="title">A friend invited you to Dartflare</h1>
+  <p id="lead">Fly darts through fire rings, hit moving targets and duel your friend. Install with this invite and you both get a coin reward.</p>
+
+  <div class="code" id="codeBox" hidden>
+    <b id="code"></b><button type="button" id="copy">Copy</button>
+  </div>
+  <p class="small" id="codeHelp" hidden>On iPhone, open Dartflare, go to Friends and enter this code.</p>
+
+  <div class="btns">
+    <a class="btn primary" id="primary" href="#" aria-disabled="true">Get the game</a>
+    <a class="btn" id="openApp" href="#" hidden>Already installed? Open the app</a>
+    <a class="btn" id="secondary" href="#" hidden></a>
+  </div>
+  <p class="small" id="soon" hidden>The App Store version is coming later. On iPhone, keep your invite code for when it is released.</p>
+  <p class="small"><a href="/apps/dartflare/">About the game</a> · <a href="/games/dartflare/privacy">Privacy</a></p>
+  <noscript><p>Open this link on your phone, install Dartflare: 3D Darts Game from Google Play, and enter the invite code from the link (the c= part of the address).</p></noscript>
+</main>
+<script>
+(function () {
+  // Store state. Flip these at release (5c). Android package and iOS Apple ID are final.
+  var CFG = {
+    pkg: 'com.swoqy.dartflare',
+    playLive: true,   // flip to false if the Play listing is not yet public
+    iosLive: false,
+    iosUrl: ''
+  };
+  var ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // = Codes.Alphabet, friend code length 8 (Codes.FriendCodeLength)
+  var qs = new URLSearchParams(location.search);
+  var code = (qs.get('c') || '').trim().toUpperCase();
+  var valid = code.length === 8 && code.split('').every(function (ch) { return ALPHABET.indexOf(ch) >= 0; });
+  var ua = navigator.userAgent || '';
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+
+  function $(id) { return document.getElementById(id); }
+  var playUrl = 'https://play.google.com/store/apps/details?id=' + CFG.pkg +
+    (valid ? '&referrer=' + encodeURIComponent('invite=' + code) : '');
+  var primary = $('primary'), secondary = $('secondary'), openApp = $('openApp');
+
+  if (valid) {
+    try { localStorage.setItem('dartflare_invite', code); } catch (e) {}
+    $('code').textContent = code;
+    $('codeBox').hidden = false;
+    $('copy').addEventListener('click', function () {
+      var b = this;
+      function done() { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); }
+      try { navigator.clipboard.writeText(code).then(done, done); } catch (e) { done(); }
+    });
+  } else {
+    $('title').textContent = 'Dartflare: 3D Darts Game';
+    $('lead').textContent = 'This invite link looks incomplete, but you can still get the game.';
+  }
+
+  function setLink(el, href, label, live) {
+    el.textContent = label;
+    el.href = live ? href : '#';
+    el.setAttribute('aria-disabled', live ? 'false' : 'true');
+  }
+
+  if (isIOS) {
+    setLink(primary, '/apps/dartflare/', 'About Dartflare', true);
+    if (valid) $('codeHelp').hidden = false;
+    $('soon').hidden = false;
+  } else if (isAndroid) {
+    setLink(primary, playUrl, 'Get it on Google Play', CFG.playLive);
+    if (valid && CFG.playLive) {
+      // Installed app: Android normally opens it before this page loads (verified App Link).
+      // Fallback for browsers that did not: intent URL, opens the app or goes to Play with the referrer.
+      var path = location.pathname + location.search;
+      openApp.href = 'intent://swoqy.com' + path + '#Intent;scheme=https;package=' + CFG.pkg +
+        ';S.browser_fallback_url=' + encodeURIComponent(playUrl) + ';end';
+      openApp.hidden = false;
+      setTimeout(function () { location.replace(playUrl); }, 2500);
+    }
+    if (!CFG.playLive) $('soon').hidden = false;
+  } else {
+    // Desktop or unknown: show both stores.
+    setLink(primary, playUrl, 'Get it on Google Play', CFG.playLive);
+    if (valid) { $('codeHelp').hidden = false; $('codeHelp').textContent = 'Open this page on your phone, or enter this code in the app under Friends.'; }
+    if (!CFG.playLive) $('soon').hidden = false;
+  }
+})();
+</script>
+</body>
+</html>

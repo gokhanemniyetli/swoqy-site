@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dartflare: 3D Darts Game · Shared shot</title>
+<meta name="description" content="A friend shared a shot from Dartflare: 3D Darts Game. Replay it in the app.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/apps/dartflare/icon.png">
+<meta property="og:title" content="Watch my shot in Dartflare: 3D Darts Game">
+<meta property="og:description" content="Trick-shot darts, 501 and online duels. Free on Google Play.">
+<meta property="og:image" content="https://swoqy.com/apps/dartflare/icon.png">
+<style>
+  :root { --bg:#0e1114; --panel:#161b20; --line:#232a31; --ink:#e9edf1; --muted:#9aa5b1; --accent:#ff9b5e; --gold:#ffcb5c; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:520px; margin:0 auto; padding:24px 16px 48px; text-align:center; }
+  .head { display:flex; align-items:center; gap:14px; text-align:left; }
+  .head img { width:64px; height:64px; border-radius:15px; flex:none; }
+  h1 { font-size:21px; line-height:1.2; margin:0; }
+  p { margin:6px 0; color:var(--muted); }
+  canvas { display:block; width:100%; max-width:480px; height:auto; margin:16px auto 8px; background:var(--panel); border:1px solid var(--line); border-radius:14px; }
+  dl { display:grid; grid-template-columns:auto 1fr; gap:4px 14px; text-align:left; background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:12px 16px; margin:12px 0; font-size:15px; }
+  dt { color:var(--muted); } dd { margin:0; }
+  .btns { display:flex; flex-direction:column; gap:10px; margin:18px 0 8px; }
+  .btn { display:block; padding:13px 18px; border-radius:12px; border:1px solid var(--line); background:var(--panel); color:var(--ink); font-weight:600; text-decoration:none; }
+  .btn.primary { background:var(--accent); border-color:var(--accent); color:#2a1304; }
+  .btn[aria-disabled="true"] { opacity:.6; pointer-events:none; }
+  .small { font-size:14px; }
+  a { color:var(--accent); }
+  [hidden] { display:none !important; }
+  .err { color:#ff9c8f; }
+</style>
+</head>
+<body>
+<main>
+  <div class="head">
+    <img src="/apps/dartflare/icon.png" alt="Dartflare: 3D Darts Game" width="64" height="64">
+    <div><h1>Someone shared a throw with you</h1><p>Dartflare: 3D Darts Game</p></div>
+  </div>
+  <p style="margin-top:20px">This shot was sent from Dartflare. The slow-motion replay plays inside the app: open this link on a phone with Dartflare installed, or get the game below.</p>
+  <div class="btns">
+    <a class="btn primary" id="openApp" href="#" hidden>Replay in the app</a>
+    <a class="btn" id="store" href="https://play.google.com/store/apps/details?id=com.swoqy.dartflare">Get it on Google Play</a>
+  </div>
+  <p class="small" id="ios" hidden>iPhone version coming later.</p>
+  <p class="small"><a href="/apps/dartflare/">About the game</a> &middot; <a href="/games/dartflare/privacy">Privacy</a></p>
+  <noscript><p>Open this link on a phone with Dartflare installed to replay the shot.</p></noscript>
+</main>
+<script>
+(function () {
+  var PKG = 'com.swoqy.dartflare';
+  var playUrl = 'https://play.google.com/store/apps/details?id=' + PKG;
+  var ua = navigator.userAgent || '';
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+  var raw = (new URLSearchParams(location.search).get('s') || '').trim();
+  if (isAndroid && raw) {
+    var o = document.getElementById('openApp');
+    o.href = 'intent://swoqy.com' + location.pathname + location.search + '#Intent;scheme=https;package=' + PKG +
+      ';S.browser_fallback_url=' + encodeURIComponent(playUrl) + ';end';
+    o.hidden = false;
+  }
+  if (isIOS) { document.getElementById('store').hidden = true; document.getElementById('ios').hidden = false; }
+})();
+</script>
+</body>
+</html>

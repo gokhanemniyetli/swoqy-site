@@ -1,0 +1,68 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.billiardshustle.game",
+      "sha256_cert_fingerprints": [
+        "0F:EC:2F:6A:33:A2:EC:56:14:63:AB:7E:74:E7:62:D2:40:77:19:0F:2C:3E:12:21:60:2E:F0:87:D7:34:17:EC",
+        "75:CD:3E:D8:36:B3:C6:F2:B2:E4:85:92:9A:5F:8B:B3:B0:5A:25:FF:80:5C:B9:CC:A7:11:F4:A7:C2:BB:AC:17"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.poolhustle.game",
+      "sha256_cert_fingerprints": [
+        "3B:05:45:D9:91:F4:DE:24:DD:FA:9C:D7:C3:AE:FA:9F:06:01:8B:59:AA:2A:D4:2B:35:7E:97:B3:B2:F2:CA:65",
+        "BD:80:15:D2:F9:E7:8F:6A:B3:FB:82:54:6C:9D:DC:D6:C5:49:D8:E7:79:D2:A6:E8:5E:72:3B:C7:A3:76:3E:6F",
+        "B3:60:F2:CC:76:0E:68:E1:9C:48:CC:CB:CF:93:1C:07:CD:A4:3E:36:C9:58:51:C0:10:D9:89:96:81:34:1E:DE",
+        "27:15:17:F3:9A:70:26:7A:7C:F7:4F:6A:39:F8:AC:11:CD:58:FE:40:68:83:12:CB:6C:9F:55:CD:69:CB:75:A3"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.swoqy.kingofislands",
+      "sha256_cert_fingerprints": [
+        "42:F4:CE:E1:99:30:23:66:7A:BD:BD:27:C1:39:B5:74:DB:B6:62:C2:F9:84:6C:34:84:75:26:C9:D3:F7:E2:BA",
+        "7F:47:54:7A:7F:8A:11:EB:2D:CE:29:33:C6:49:90:39:5B:04:6D:DB:D6:3F:08:FA:2D:4F:A5:53:CE:1A:B3:D1"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.swoqy.zephyra",
+      "sha256_cert_fingerprints": [
+        "11:7F:7E:98:18:69:F2:32:2A:51:70:94:DF:B4:73:16:C1:90:FD:ED:15:FE:78:10:EA:A7:E0:A3:7D:3B:D9:BB"
+      ]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.swoqy.dartflare",
+      "sha256_cert_fingerprints": [
+        "97:03:CF:C0:7A:B7:89:47:46:A9:F0:DD:9B:0B:8F:EE:92:EB:F4:26:58:56:EA:62:B7:59:44:6A:11:D3:FB:BB",
+        "C6:12:26:05:6D:C3:87:13:ED:DB:51:BE:1B:A4:12:22:EE:60:FC:F7:A0:0E:AF:98:CF:3D:BA:3A:FD:6B:0D:B3"
+      ]
+    }
+  }
+]
